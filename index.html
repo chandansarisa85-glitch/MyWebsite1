@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vistagram</title>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="styles.css">
+    <script src="firebase-config.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+    <script src="app.js?v=registration-logo-1" defer></script>
+  </head>
+  <body>
+    <section id="registrationScreen" class="login-screen registration-screen" aria-label="Register for Vistagram">
+      <div class="login-art">
+        <img class="login-brand-mark app-logo-image" src="assets/vistagram-logo.png" alt="Vistagram logo">
+        <h1>Join Vistagram with your <span>own profile name.</span></h1>
+        <div class="story-collage" aria-hidden="true">
+          <img class="collage-card card-one" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=360&q=82" alt="">
+          <img class="collage-card card-two" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=360&q=82" alt="">
+          <img class="collage-card card-three" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=360&q=82" alt="">
+          <span class="collage-reaction heart-badge"><i data-lucide="heart"></i></span>
+          <span class="collage-reaction star-badge"><i data-lucide="star"></i></span>
+        </div>
+      </div>
+
+      <div class="login-panel">
+        <form id="registrationForm" class="login-card registration-card">
+          <h2>Create your Vistagram account</h2>
+          <input id="registerProfileName" type="text" autocomplete="username" maxlength="24" placeholder="Desired profile name">
+          <input id="registerEmail" type="email" autocomplete="email" placeholder="Email address">
+          <input id="registerPassword" type="password" autocomplete="new-password" placeholder="Password">
+          <button id="emailRegisterButton" class="primary-button login-submit" type="submit">Sign up with email</button>
+          <button id="googleRegisterButton" class="social-login-button" type="button">
+            <span class="google-dot">G</span>
+            Sign up with Google
+          </button>
+          <button id="registrationFirebaseSetupButton" class="link-button setup-link" type="button">Configure Google signup</button>
+          <button id="showLoginButton" class="outline-button" type="button">I already have an account</button>
+          <p id="registrationMessage" class="login-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="loginScreen" class="login-screen is-hidden" aria-label="Log in to Vistagram">
+      <div class="login-art">
+        <img class="login-brand-mark app-logo-image" src="assets/vistagram-logo.png" alt="Vistagram logo">
+        <h1>See everyday moments from your <span>close friends.</span></h1>
+        <div class="story-collage" aria-hidden="true">
+          <img class="collage-card card-one" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=360&q=82" alt="">
+          <img class="collage-card card-two" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=360&q=82" alt="">
+          <img class="collage-card card-three" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=360&q=82" alt="">
+          <span class="collage-reaction heart-badge"><i data-lucide="heart"></i></span>
+          <span class="collage-reaction star-badge"><i data-lucide="star"></i></span>
+        </div>
+      </div>
+
+      <div class="login-panel">
+        <form id="loginForm" class="login-card">
+          <h2>Log into Vistagram</h2>
+          <input id="loginIdentifier" type="text" autocomplete="username" placeholder="Mobile number, username or email">
+          <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Password">
+          <button class="primary-button login-submit" type="submit">Log in</button>
+          <button class="link-button" type="button">Forgot password?</button>
+          <div class="auth-divider"></div>
+          <button id="googleLoginButton" class="social-login-button" type="button">
+            <span class="google-dot">G</span>
+            Continue with Google
+          </button>
+          <button id="facebookLoginButton" class="social-login-button" type="button">
+            <span class="facebook-dot">f</span>
+            Continue with Facebook
+          </button>
+          <button id="openFirebaseSetupButton" class="link-button setup-link" type="button">Configure real Google login</button>
+          <button id="openCreateLoginButton" class="outline-button" type="button">Create new account</button>
+          <p id="loginMessage" class="login-message" aria-live="polite"></p>
+          <div class="meta-wordmark"><i data-lucide="infinity"></i><span>Meta</span></div>
+        </form>
+      </div>
+    </section>
+
+    <div id="appShell" class="app-shell is-hidden">
+      <aside class="rail" aria-label="Primary navigation">
+        <a class="brand" href="#" aria-label="Vistagram home">
+          <span class="brand-mark"><img src="assets/vistagram-logo.png" alt=""></span>
+          <span>Vistagram</span>
+        </a>
+        <nav class="nav-stack">
+          <button class="nav-item active" type="button" data-nav-action="home"><i data-lucide="home"></i><span>Home</span></button>
+          <button class="nav-item" type="button" data-nav-action="search"><i data-lucide="search"></i><span>Search</span></button>
+          <button class="nav-item" type="button" data-nav-action="explore"><i data-lucide="compass"></i><span>Explore</span></button>
+          <button class="nav-item" type="button" data-nav-action="reels"><i data-lucide="film"></i><span>Reels</span></button>
+          <button class="nav-item" type="button" data-nav-action="messages"><i data-lucide="send"></i><span>Messages</span><b>4</b></button>
+          <button class="nav-item" type="button" data-nav-action="activity"><i data-lucide="heart"></i><span>Activity</span></button>
+          <button class="nav-item create-trigger" type="button"><i data-lucide="plus-square"></i><span>Create</span></button>
+          <button class="nav-item switch-account" type="button"><img data-current-avatar class="tiny-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&q=80" alt=""><span>Switch user</span></button>
+          <button id="logoutButton" class="nav-item" type="button"><i data-lucide="log-out"></i><span>Log out</span></button>
+        </nav>
+        <button class="nav-item bottom-action" type="button" data-nav-action="more"><i data-lucide="menu"></i><span>More</span></button>
+      </aside>
+
+      <main class="content">
+        <header class="mobile-topbar">
+          <a class="brand" href="#" aria-label="Vistagram home">
+            <span class="brand-mark"><img src="assets/vistagram-logo.png" alt=""></span>
+            <span>Vistagram</span>
+          </a>
+          <div class="mobile-actions">
+            <button class="icon-button create-trigger" type="button" aria-label="Create post"><i data-lucide="plus-square"></i></button>
+            <button class="icon-button" type="button" aria-label="Messages" data-nav-action="messages"><i data-lucide="send"></i></button>
+            <button class="icon-button logout-trigger" type="button" aria-label="Log out"><i data-lucide="log-out"></i></button>
+          </div>
+        </header>
+
+        <section class="feed-column" aria-label="Main feed">
+          <div id="stories" class="stories" aria-label="Stories"></div>
+
+          <article class="composer">
+            <img data-current-avatar class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&q=80" alt="">
+            <button class="composer-field create-trigger" type="button">Share a moment...</button>
+            <button class="composer-upload create-trigger" type="button"><i data-lucide="clapperboard"></i><span>Reel</span></button>
+          </article>
+
+          <div id="feed" class="feed"></div>
+        </section>
+
+        <aside class="side-panel" aria-label="Account and suggestions">
+          <section id="profileSummary" class="profile-summary"></section>
+
+          <section id="statsStrip" class="stats-strip" aria-label="Profile stats"></section>
+
+          <section class="suggestions">
+            <div class="section-heading">
+              <h2>Suggested for you</h2>
+              <button type="button">See all</button>
+            </div>
+            <div id="suggestionsList"></div>
+          </section>
+
+          <section class="trends">
+            <div class="section-heading">
+              <h2>Explore today</h2>
+            </div>
+            <div class="trend-grid">
+              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=280&q=80" alt="">
+              <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=280&q=80" alt="">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=280&q=80" alt="">
+              <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=280&q=80" alt="">
+            </div>
+          </section>
+        </aside>
+      </main>
+
+      <nav class="mobile-tabbar" aria-label="Mobile navigation">
+        <button class="icon-button active" type="button" aria-label="Home" data-nav-action="home"><i data-lucide="home"></i></button>
+        <button class="icon-button" type="button" aria-label="Search" data-nav-action="search"><i data-lucide="search"></i></button>
+        <button class="icon-button create-trigger" type="button" aria-label="Create"><i data-lucide="plus-square"></i></button>
+        <button class="icon-button" type="button" aria-label="Reels" data-nav-action="reels"><i data-lucide="film"></i></button>
+        <button class="icon-button switch-account" type="button" aria-label="Switch user"><img data-current-avatar class="tiny-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&q=80" alt=""></button>
+      </nav>
+    </div>
+
+    <dialog id="createDialog" class="create-dialog">
+      <form method="dialog" class="dialog-card">
+        <header>
+          <h2>Create post or reel</h2>
+          <button class="icon-button" value="close" aria-label="Close"><i data-lucide="x"></i></button>
+        </header>
+        <label>
+          <span>Caption</span>
+          <textarea id="captionInput" maxlength="180" placeholder="Write a caption..."></textarea>
+        </label>
+        <label>
+          <span>Media URL optional</span>
+          <input id="photoInput" type="url" placeholder="Photo or video URL">
+        </label>
+        <label>
+          <span>Upload photo or reel</span>
+          <input id="mediaFileInput" type="file" accept="image/*,video/*">
+        </label>
+        <label>
+          <span>Location</span>
+          <input id="locationInput" type="text" maxlength="50" placeholder="City, venue, or mood">
+        </label>
+        <div class="dialog-actions">
+          <button class="ghost-button" value="close">Cancel</button>
+          <button id="publishButton" class="primary-button" value="default" type="button">Publish</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="googleSwitchDialog" class="utility-dialog">
+      <form method="dialog" class="dialog-card">
+        <header>
+          <h2>Switch Google account</h2>
+          <button class="icon-button" value="close" aria-label="Close"><i data-lucide="x"></i></button>
+        </header>
+        <section class="google-switch-body">
+          <div id="googleAccounts" class="google-account-list"></div>
+          <button id="googleSwitchButton" class="google-action-button" type="button">
+            <span class="google-dot">G</span>
+            Continue with Google
+          </button>
+          <button id="googleOtherAccountButton" class="outline-button" type="button">Use another Google account</button>
+          <button id="googleSetupButton" class="link-button setup-link" type="button">Configure Google login</button>
+          <p id="googleSwitchMessage" class="auth-message" aria-live="polite"></p>
+        </section>
+      </form>
+    </dialog>
+
+    <dialog id="searchDialog" class="utility-dialog">
+      <form method="dialog" class="dialog-card">
+        <header>
+          <h2>Search profiles</h2>
+          <button class="icon-button" value="close" aria-label="Close"><i data-lucide="x"></i></button>
+        </header>
+        <section class="search-panel">
+          <label class="search-box">
+            <i data-lucide="search"></i>
+            <input id="profileSearchInput" type="search" autocomplete="off" placeholder="Search username or name">
+          </label>
+          <div id="profileSearchResults" class="profile-results"></div>
+        </section>
+      </form>
+    </dialog>
+
+    <dialog id="reelUploadDialog" class="utility-dialog">
+      <form method="dialog" class="dialog-card">
+        <header>
+          <h2>Upload reel</h2>
+          <button class="icon-button" value="close" aria-label="Close"><i data-lucide="x"></i></button>
+        </header>
+        <section class="reel-upload-panel">
+          <label class="device-upload">
+            <i data-lucide="upload-cloud"></i>
+            <span>Upload reel from device</span>
+            <input id="reelFileInput" type="file" accept="video/*">
+          </label>
+          <video id="reelPreview" class="reel-preview is-hidden" controls playsinline></video>
+          <label>
+            <span>Caption</span>
+            <textarea id="reelCaptionInput" maxlength="180" placeholder="Write a reel caption..."></textarea>
+          </label>
+          <label>
+            <span>Audio or location</span>
+            <input id="reelLocationInput" type="text" maxlength="50" placeholder="Original audio">
+          </label>
+          <p id="reelUploadMessage" class="auth-message" aria-live="polite"></p>
+        </section>
+        <div class="dialog-actions">
+          <button class="ghost-button" value="close">Cancel</button>
+          <button id="publishReelButton" class="primary-button" type="button">Publish reel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="messagesDialog" class="messages-dialog">
+      <form method="dialog" class="dialog-card messages-card">
+        <header>
+          <h2>Messages</h2>
+          <button class="icon-button" value="close" aria-label="Close"><i data-lucide="x"></i></button>
+        </header>
+        <section class="messages-layout">
+          <div id="chatContacts" class="chat-contacts"></div>
+          <div class="chat-pane">
+            <div id="chatRecipientName" class="chat-recipient"></div>
+            <div id="chatThread" class="chat-thread"></div>
+            <div class="chat-composer">
+              <input id="chatInput" type="text" autocomplete="off" placeholder="Message...">
+              <button id="sendChatButton" class="primary-button" type="button">Send</button>
+            </div>
+          </div>
+        </section>
+      </form>
+    </dialog>
+
+    <dialog id="moreDialog" class="utility-dialog">
+      <form method="dialog" class="dialog-card">
+        <header>
+          <h2>More</h2>
+          <button class="icon-button" value="close" aria-label="Close"><i data-lucide="x"></i></button>
+        </header>
+        <section class="more-menu">
+          <button type="button" data-more-action="saved"><i data-lucide="bookmark"></i><span>Saved posts</span></button>
+          <button type="button" data-more-action="activity"><i data-lucide="heart"></i><span>Your activity</span></button>
+          <button type="button" data-more-action="settings"><i data-lucide="settings"></i><span>Settings</span></button>
+          <button type="button" data-more-action="theme"><i data-lucide="palette"></i><span>Change theme</span></button>
+          <button type="button" data-more-action="google"><i data-lucide="user-round-cog"></i><span>Google account</span></button>
+          <button type="button" data-more-action="logout"><i data-lucide="log-out"></i><span>Log out</span></button>
+        </section>
+      </form>
+    </dialog>
+
+    <dialog id="authDialog" class="auth-dialog">
+      <form method="dialog" class="dialog-card auth-card">
+        <header>
+          <h2>Use Vistagram</h2>
+          <button class="icon-button" value="close" aria-label="Close"><i data-lucide="x"></i></button>
+        </header>
+        <section class="auth-section">
+          <h3>Switch account</h3>
+          <div id="authAccounts" class="account-list"></div>
+          <div class="signin-row">
+            <input id="signInInput" type="text" autocomplete="username" placeholder="username">
+            <button id="signInButton" class="primary-button" type="button">Sign in</button>
+          </div>
+        </section>
+        <section class="auth-section">
+          <h3>Create account</h3>
+          <input id="createNameInput" type="text" autocomplete="name" placeholder="Display name">
+          <input id="createUsernameInput" type="text" autocomplete="username" placeholder="username">
+          <input id="createAvatarInput" type="url" placeholder="Avatar URL optional">
+          <button id="createAccountButton" class="primary-button" type="button">Create and login</button>
+          <p id="authMessage" class="auth-message" aria-live="polite"></p>
+        </section>
+        <footer class="auth-footer">
+          <button id="resetDemoButton" class="ghost-button" type="button">Reset demo data</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="firebaseDialog" class="auth-dialog">
+      <form method="dialog" class="dialog-card auth-card">
+        <header>
+          <h2>Firebase setup</h2>
+          <button class="icon-button" value="close" aria-label="Close"><i data-lucide="x"></i></button>
+        </header>
+        <section class="auth-section">
+          <h3>Real Google login</h3>
+          <p class="setup-copy">Paste your Firebase web app config values here. Then enable Google sign-in in Firebase Authentication and add localhost plus 127.0.0.1 as authorized domains.</p>
+          <input id="firebaseApiKeyInput" type="text" autocomplete="off" placeholder="apiKey">
+          <input id="firebaseAuthDomainInput" type="text" autocomplete="off" placeholder="authDomain, like your-app.firebaseapp.com">
+          <input id="firebaseProjectIdInput" type="text" autocomplete="off" placeholder="projectId">
+          <input id="firebaseAppIdInput" type="text" autocomplete="off" placeholder="appId">
+          <button id="saveFirebaseConfigButton" class="primary-button" type="button">Save Firebase config</button>
+          <p id="firebaseSetupMessage" class="auth-message" aria-live="polite"></p>
+        </section>
+      </form>
+    </dialog>
+  </body>
+</html>
